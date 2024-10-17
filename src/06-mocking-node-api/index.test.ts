@@ -1,11 +1,11 @@
 import { existsSync } from 'fs';
 import { readFile } from 'fs/promises';
+import path from 'path';
 import {
   readFileAsynchronously,
   doStuffByTimeout,
   doStuffByInterval,
 } from './index';
-import path from 'path';
 
 jest.mock('fs');
 jest.mock('fs/promises');
@@ -13,12 +13,10 @@ jest.mock('fs/promises');
 describe('doStuffByTimeout', () => {
   beforeAll(() => {
     jest.useFakeTimers();
-    jest.spyOn(global, 'setTimeout'); // Создание шпиона на setTimeout
   });
 
   afterAll(() => {
     jest.useRealTimers();
-    jest.restoreAllMocks();
   });
 
   test('should set timeout with provided callback and timeout', () => {
@@ -43,12 +41,10 @@ describe('doStuffByTimeout', () => {
 describe('doStuffByInterval', () => {
   beforeAll(() => {
     jest.useFakeTimers();
-    jest.spyOn(global, 'setInterval'); // Создание шпиона на setInterval
   });
 
   afterAll(() => {
     jest.useRealTimers();
-    jest.restoreAllMocks();
   });
 
   test('should set interval with provided callback and timeout', () => {
